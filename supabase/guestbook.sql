@@ -18,3 +18,8 @@ create policy "anyone can read" on public.guestbook
   for select using (true);
 create policy "anyone can sign" on public.guestbook
   for insert with check (true);
+
+-- RLS policies only filter rows. The anon key also needs table privileges
+-- or POST /api/guestbook returns "permission denied for table guestbook".
+grant usage on schema public to anon, authenticated;
+grant select, insert on table public.guestbook to anon, authenticated;

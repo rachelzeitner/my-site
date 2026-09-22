@@ -8,13 +8,16 @@ import { createClient } from "@supabase/supabase-js";
  *
  * Setup happens in Station 1.3 (Chapter 3, Step 5): create your Supabase
  * project, run supabase/guestbook.sql in its SQL Editor, and set
- * NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local
- * (and in Vercel's Environment Variables).
+ * NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY (or
+ * NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) in .env.local and in Vercel's
+ * Environment Variables.
  */
 
 function supabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const key =
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
   if (!url || !key) return null;
   return createClient(url, key);
 }
