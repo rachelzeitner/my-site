@@ -45,6 +45,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href="/reasoning" className="transition hover:text-accent">
                 Reasoning
               </Link>
+              <Link href="/simulator" className="transition hover:text-accent">
+                Simulator
+              </Link>
             </nav>
           </div>
         </header>
